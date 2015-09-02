@@ -1,9 +1,13 @@
-require("babel/polyfill");
-
 import printerController from "./js/printer";
 
-var main = function () {
-	let printer = printerController();
-	
-	printer.hello();
-}();
+(function () {
+    const printer = printerController();
+
+    const obj = { key: 42 };
+
+    if (obj) {
+        obj.key++;
+    }
+
+    printer.hello("world", () => 42);
+})();

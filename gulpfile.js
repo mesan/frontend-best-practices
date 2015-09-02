@@ -8,30 +8,31 @@ var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 
 gulp.task("less", function () {
-  return gulp.src("./src/**/*.less")
-    .pipe(less())
-    .pipe(gulp.dest("./dist/css"));
+    return gulp.src("./src/**/*.less")
+        .pipe(less())
+        .pipe(gulp.dest("./dist/css"));
 });
 
 gulp.task("assets", function () {
-  return gulp.src("./src/assets/**/*.*")
-    .pipe(gulp.dest("./dist/assets"));
+    return gulp.src("./src/assets/**/*.*")
+        .pipe(gulp.dest("./dist/assets"));
 });
 
 gulp.task("js", function () {
-    return browserify({entries: "./src/main.js", extensions: [".js"], debug: true})
-      .transform(babelify)
-      .bundle()
-      .pipe(source("script.js"))
-      .pipe(gulp.dest("./dist"));
+    return browserify({ entries: "./src/main.js", extensions: [".js"], debug: true })
+        .add(require.resolve("babel/polyfill"))
+        .transform(babelify)
+        .bundle()
+        .pipe(source("script.js"))
+        .pipe(gulp.dest("./dist"));
 });
 
 gulp.task("html", ["less", "assets", "js"], function () {
-  var target = gulp.src("./src/index.html");
-  var sources = gulp.src(["./dist/**/*.css", "./dist/**/*.js"], { read: false });
- 
-  return target.pipe(inject(sources, { ignorePath: "/dist" }))
-    .pipe(gulp.dest("./dist"));
+    var target = gulp.src("./src/index.html");
+    var sources = gulp.src(["./dist/**/*.css", "./dist/**/*.js"], { read: false });
+
+    return target.pipe(inject(sources, { ignorePath: "/dist" }))
+        .pipe(gulp.dest("./dist"));
 });
 
 gulp.task("serve", ["html"], function () {
@@ -41,7 +42,7 @@ gulp.task("serve", ["html"], function () {
 });
 
 gulp.task("clean", function (cb) {
-  del(["./dist"], cb);
+    del(["./dist"], cb);
 });
 
-gulp.task("default", ["watch"]);
+gulp.task("default", ["serve"]);

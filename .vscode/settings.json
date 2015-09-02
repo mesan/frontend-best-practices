@@ -8,5 +8,9 @@
 		"**/node_modules": true,
 		"**/dist": true,
 		"**/gulp": true
-	}
+	},
+	"eslint.enable": true,
+	"editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "files.trimTrailingWhitespace": true
 }
