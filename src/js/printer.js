@@ -1,7 +1,7 @@
 const printer = function () {
-    const hello = s => console.log(`Hello ${s}`);
+  const hello = message => console.log(`Hello ${message}`);
 
-    return { hello };
+  return { hello };
 };
 
 export default printer;

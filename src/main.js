@@ -1,13 +1,14 @@
 import printerController from "./js/printer";
 
 (function () {
-    const printer = printerController();
+  const printer = printerController();
 
-    const obj = { key: 42 };
+  const obj = { key: 42 };
 
-    if (obj) {
-        obj.key++;
-    }
+  // tests
+  if (obj) {
+    obj.key++;
+  }
 
-    printer.hello("world", () => 42);
+  printer.hello("world", () => 42);
 })();
