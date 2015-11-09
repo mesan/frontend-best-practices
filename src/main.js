@@ -1,20 +1,31 @@
-import printerController from "./js/printer";
+import todolist from "./js/todolist";
+import listrenderer from "./js/listrenderer";
 
 (function () {
-  const printer = printerController();
-  const obj = {
-    key: 42
-  };
-  if (obj) {
-    obj.key++;
-  }
+  const todos = todolist();
+  const renderer = listrenderer();
+  const newItemForm = document.querySelector("#newitem");
 
-  printer.hello("world", () => 42);
+  newItemForm.addEventListener("submit", event => {
+    event.preventDefault();
+    const item = {
+      title: event.target.elements.title.value,
+      description: event.target.elements.description.value
+    };
+
+    todos.addItem(item);
+    event.target.elements.title.value = "";
+    event.target.elements.description.value = "";
+    renderer.render(todos.getItems());
+
+    const removebuttons = [...document.querySelectorAll(".removebutton")];
+    // todo: fix disappearing event listeners
+    removebuttons.forEach(button => {
+      button.addEventListener("click", removeEvent => {
+        console.log(removeEvent.target.id);
+        todos.removeItem(removeEvent.target.id);
+        renderer.render(todos.getItems());
+      });
+    });
+  });
 })();
-
-const getFullName = ({ firstName, lastName = "Jensen" }) => {
-  return `${firstName} ${lastName}`;
-};
-
-const person = { age: 26, firstName: "Christian" };
-getFullName(person);
