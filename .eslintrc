@@ -9,7 +9,7 @@
     "defaultParams": true,                     // enable default function parameters
     "destructuring": true,                     // enable destructuring
     "forOf": true,                             // enable for-of loops
-    "generators": true,                        // enable generators
+    "generators": false,                        // enable generators
     "modules": true,                           // enable modules and global strict mode
     "objectLiteralComputedProperties": true,   // enable computed object literal property names
     "objectLiteralDuplicateProperties": true,  // enable duplicate object literal properties in strict mode
@@ -182,11 +182,11 @@
     "eol-last": 2,                    // enforce newline at the end of file, with no multiple empty lines
     "func-names": 0,                  // require function expressions to have a name (off by default)
     "func-style": [2, "expression"],  // enforces use of function declarations or expressions (off by default)
-    "id-length": [2, {"min": 2, "exceptions": ["x", "y", "z", "i"]}],                   // this option enforces minimum and maximum identifier lengths (variable names, property names etc.)
+    "id-length": [2, {"min": 2, "exceptions": ["x", "y", "z", "i"]}], // this option enforces minimum and maximum identifier lengths (variable names, property names etc.)
     "id-match": 0,                    // require identifiers to match the provided regular expression
     "indent": [2, 2],                 // this option sets a specific tab width for your code (off by default)
     "key-spacing": [2, {"beforeColon": false, "afterColon": true}],                 // enforces spacing between keys and values in object literal properties
-    "lines-around-comment": [2, { "beforeBlockComment": true, "beforeLineComment": true }],        // enforces empty lines around comments (off by default)
+    "lines-around-comment": [2, { "beforeBlockComment": true, "beforeLineComment": true, "allowBlockStart": true }],        // enforces empty lines around comments (off by default)
     "linebreak-style": 0,             // disallow mixed 'LF' and 'CRLF' as linebreaks (off by default)
     "max-nested-callbacks": 0,        // specify the maximum depth callbacks can be nested (off by default)
     "new-cap": 2,                     // require a capital letter for constructors
@@ -224,7 +224,7 @@
     "wrap-regex": 2,                  // require regex literals to be wrapped in parentheses (off by default)
 
 
-    ////////// ECMAScript 6 //////////
+    ////////// ECMAScript 2015 //////////
 
     "arrow-parens": [2, "as-needed"], // require parens in arrow function arguments
     "arrow-spacing": [2, {"before": true, "after": true}], // require space before/after arrow function's arrow
