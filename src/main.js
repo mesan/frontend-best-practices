@@ -6,6 +6,15 @@ import listrenderer from "./js/listrenderer";
   const renderer = listrenderer();
   const newItemForm = document.querySelector("#newitem");
 
+  document.querySelector('#todolist')
+    .addEventListener('click', event => {
+      console.log("BLARGH");
+      if (event.target.matches('.removebutton')) {
+        todos.removeItem(parseInt(event.target.id));
+        renderer.render(todos.getItems());
+      }
+    });
+
   newItemForm.addEventListener("submit", event => {
     event.preventDefault();
     const item = {
@@ -17,15 +26,5 @@ import listrenderer from "./js/listrenderer";
     event.target.elements.title.value = "";
     event.target.elements.description.value = "";
     renderer.render(todos.getItems());
-
-    const removebuttons = [...document.querySelectorAll(".removebutton")];
-    // todo: fix disappearing event listeners
-    removebuttons.forEach(button => {
-      button.addEventListener("click", removeEvent => {
-        console.log(removeEvent.target.id);
-        todos.removeItem(removeEvent.target.id);
-        renderer.render(todos.getItems());
-      });
-    });
   });
 })();
