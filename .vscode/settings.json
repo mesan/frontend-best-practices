@@ -9,7 +9,6 @@
 		"**/dist": true,
 		"**/gulp": true
 	},
-	"eslint.enable": true,
 	"editor.insertSpaces": true,
     "editor.tabSize": 2,
     "files.trimTrailingWhitespace": true

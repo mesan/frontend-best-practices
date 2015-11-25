@@ -6,10 +6,9 @@ import listrenderer from "./js/listrenderer";
   const renderer = listrenderer();
   const newItemForm = document.querySelector("#newitem");
 
-  document.querySelector('#todolist')
-    .addEventListener('click', event => {
-      console.log("BLARGH");
-      if (event.target.matches('.removebutton')) {
+  document.querySelector("#todolist")
+    .addEventListener("click", event => {
+      if (event.target.matches(".removebutton")) {
         todos.removeItem(parseInt(event.target.id));
         renderer.render(todos.getItems());
       }
