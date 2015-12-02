@@ -5,6 +5,7 @@ import listrenderer from "./js/listrenderer";
   const todos = todolist();
   const renderer = listrenderer();
   const newItemForm = document.querySelector("#newitem");
+  renderer.render(todos.getItems());
 
   document.querySelector("#todolist")
     .addEventListener("click", event => {

@@ -1,7 +1,9 @@
 const persistentStorage = function () {
-  const storage = "storage";
+  const getItemFromStorage = itemName => JSON.parse(localStorage.getItem(itemName));
 
-  return { storage };
+  const setItemInStorage = (itemName, item) => localStorage.setItem(itemName, JSON.stringify(item));
+
+  return { getItemFromStorage, setItemInStorage };
 };
 
 export default persistentStorage;
