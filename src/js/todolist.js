@@ -6,10 +6,7 @@ const todolist = function () {
   const idGenerator = idFactory();
   const storage = persistentStorage();
 
-  const getItems = () => {
-    const items = storage.getItemFromStorage(storageName);
-    return items ? items : [];
-  };
+  const getItems = () => storage.getItemFromStorage(storageName) || [];
 
   const addItem = ({title = "", description = ""}) => {
     const items = getItems();

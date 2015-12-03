@@ -4,10 +4,7 @@ const idFactory = function () {
   const storageName = "lastId";
   const storage = persistentStorage();
 
-  const getLastId = () => {
-    const lastId = storage.getItemFromStorage(storageName);
-    return lastId ? lastId : 0;
-  };
+  const getLastId = () => storage.getItemFromStorage(storageName) || 0;
 
   const createId = () => {
     let lastId = getLastId();
