@@ -1,14 +1,24 @@
 import idFactory from "./idFactory";
+import persistentStorage from "./persistentStorage";
 
 const todolist = function () {
+  const storageName = "todoitems";
   const idGenerator = idFactory();
-  const items = [];
+  const storage = persistentStorage();
 
-  const getItems = () => items;
+  const getItems = () => storage.getItemFromStorage(storageName) || [];
 
-  const addItem = ({title = "", description = ""}) => items.push({id: idGenerator.createId(), title, description});
+  const addItem = ({title = "", description = ""}) => {
+    const items = getItems();
+    items.push({id: idGenerator.createId(), title, description});
+    storage.setItemInStorage(storageName, items);
+  };
 
-  const removeItem = id => items.splice(items.findIndex(item => item.id === id), 1);
+  const removeItem = id => {
+    const items = getItems();
+    items.splice(items.findIndex(item => item.id === id), 1);
+    storage.setItemInStorage(storageName, items);
+  };
 
   return { getItems, addItem, removeItem };
 };
